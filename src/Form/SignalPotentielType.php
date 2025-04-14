@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Pole;
 use App\Entity\DasErmr;
 use App\Entity\Direction;
+use App\Entity\VoieAdmin;
 use App\Entity\Exposition;
 use App\Entity\Litterature;
 use App\Entity\Imputabilite;
@@ -15,6 +16,7 @@ use App\Entity\EffetRCPautrePays;
 use App\Repository\PoleRepository;
 use App\Repository\DasErmrRepository;
 use App\Repository\DirectionRepository;
+use App\Repository\VoieAdminRepository;
 use App\Repository\ExpositionRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\LitteratureRepository;
@@ -27,6 +29,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SignalPotentielType extends AbstractType
@@ -42,10 +45,10 @@ class SignalPotentielType extends AbstractType
                         ->andWhere('d.Inactif = 0')
                         ->orderBy('d.LibelleCourt', 'ASC');
                 },
-                'placeholder' => 'Direction',
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
                 'required' => true,
             ])
             ->add('Pole', EntityType::class, [
@@ -56,10 +59,10 @@ class SignalPotentielType extends AbstractType
                         ->andWhere('d.Inactif = 0')
                         ->orderBy('d.LibelleCourt', 'ASC');
                 },
-                'placeholder' => 'Pôle',
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
                 'required' => true,
             ])
             ->add('EvalNom', TextType::class, [
@@ -87,6 +90,22 @@ class SignalPotentielType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            
+            ->add('VoieAdmin', EntityType::class, [
+                'class' => VoieAdmin::class,
+                'choice_label' => 'Libelle',
+                'query_builder' => function (VoieAdminRepository $er) {
+                    return $er->createQueryBuilder('d')
+                        ->andWhere('d.Inactif = 0')
+                        ->andWhere('d.codeTermePere IS NULL')
+                        ->orderBy('d.OrdreAffichage', 'ASC');
+                },
+                'placeholder' => '',
+                'attr' => [
+                    'class' => 'form-select',
+                ],
+                'required' => true,
+            ])
             ->add('SignalPotentiel', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -108,6 +127,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('Exposition', EntityType::class, [
                 'class' => Exposition::class,
@@ -120,6 +141,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('Imputabilite', EntityType::class, [
                 'label' => '3) Robustesse des cas disponibles : Imputabilité (méthode OMS<sup><a href="#methode-oms" class="text-decoration-none">1</a></sup>)<sup><a href="#robustesse-cas" class="text-decoration-none">2</a></sup> :',
@@ -134,6 +157,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('Litterature', EntityType::class, [
                 'label' => '4) Littérature (étude non-clinique, étude pharmacoépidémiologie, case reports, Métanalyse, etc.<sup><a href="#pertinence-litterature" class="text-decoration-none">3</a></sup>)<sup><a href="#score-litterature" class="text-decoration-none">4</a></sup> :',
@@ -148,6 +173,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('EssaisCliniques', EntityType::class, [
                 'label' => '5) Essais cliniques<sup><a href="#disproportionalite-stat" class="text-decoration-none">5</a></sup> :',
@@ -162,6 +189,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('EffetRCPautrePays', EntityType::class, [
                 'class' => EffetRCPautrePays::class,
@@ -174,6 +203,8 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
             ->add('DasErmr', EntityType::class, [
                 'class' => DasErmr::class,
@@ -186,9 +217,21 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
+                'placeholder' => '',
+                'required' => true,
             ])
-            ->add('Score')
-            ->add('Commentaire', TextareaType::class)
+            ->add('Score', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'readonly' => true, // Rend le champ non modifiable par l'utilisateur
+                    'id' => 'score-field', // Identifiant unique pour le champ
+                ],
+            ])
+            ->add('Commentaire', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
             ->add('Validation', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary m-2'],
                 'label' => 'Valider',

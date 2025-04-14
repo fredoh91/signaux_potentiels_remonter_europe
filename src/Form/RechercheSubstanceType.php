@@ -66,10 +66,10 @@ class RechercheSubstanceType extends AbstractType
         ;
     }
 
-    // public function configureOptions(OptionsResolver $resolver): void
-    // {
-    //     $resolver->setDefaults([
-    //         'data_class' => SignalPotentiel::class,
-    //     ]);
-    // }
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            // 'data_class' => SignalPotentiel::class,
+        ]);
+    }
 }

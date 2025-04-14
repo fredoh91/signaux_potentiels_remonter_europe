@@ -34,8 +34,8 @@ class SignalPotentiel
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Dosage = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $VoieAdmin = null;
+    // #[ORM\Column(length: 255, nullable: true)]
+    // private ?string $VoieAdmin = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $SignalPotentiel = null;
@@ -108,6 +108,9 @@ class SignalPotentiel
 
     #[ORM\ManyToOne(inversedBy: 'SignalPotentiel')]
     private ?DasErmr $dasErmr = null;
+
+    #[ORM\ManyToOne(inversedBy: 'SignalPotentiel')]
+    private ?VoieAdmin $voieAdmin = null;
 
     public function getId(): ?int
     {
@@ -198,17 +201,17 @@ class SignalPotentiel
         return $this;
     }
 
-    public function getVoieAdmin(): ?string
-    {
-        return $this->VoieAdmin;
-    }
+    // public function getVoieAdmin(): ?string
+    // {
+    //     return $this->VoieAdmin;
+    // }
 
-    public function setVoieAdmin(?string $VoieAdmin): static
-    {
-        $this->VoieAdmin = $VoieAdmin;
+    // public function setVoieAdmin(?string $VoieAdmin): static
+    // {
+    //     $this->VoieAdmin = $VoieAdmin;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getSignalPotentiel(): ?string
     {
@@ -498,4 +501,15 @@ class SignalPotentiel
         return $this;
     }
 
+    public function getVoieAdmin(): ?VoieAdmin
+    {
+        return $this->voieAdmin;
+    }
+
+    public function setVoieAdmin(?VoieAdmin $voieAdmin): static
+    {
+        $this->voieAdmin = $voieAdmin;
+
+        return $this;
+    }
 }

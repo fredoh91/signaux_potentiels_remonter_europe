@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- Formulaire -->
-		<div class="p-5 bg-light rounded shadow">
+		<div class="p-5 bg-secondary rounded shadow" style="--bs-bg-opacity: .3;">
 			{{ form_start(form) }}
 			<div class="row mb-3">
 				<div class="col-3">
@@ -142,6 +142,21 @@
 				<div class="col-6 text-start">
 					{{ form_widget(form.DasErmr) }}
 				</div>
+			</div>
+
+
+			<div class="row mb-3">
+				{# <div class="col-4"> #}
+					{{ form_label(form.Score, 'Score :') }}
+					{{ form_widget(form.Score) }}
+				{# </div> #}
+			</div>
+
+			<div class="row mb-3">
+				{# <div class="col-4"> #}
+					{{ form_label(form.Commentaire, 'Commentaire libre :') }}
+					{{ form_widget(form.Commentaire) }}
+				{# </div> #}
 			</div>
 
 			<div class="text-center">
