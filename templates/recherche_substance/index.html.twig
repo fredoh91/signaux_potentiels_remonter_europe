@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche/saisie d'une substance
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid p-5">
+		{{form_start(form)}}
+		<div class="row">
+			<div class="col-4">
+				{{ form_label(form.Substance, 'Substance :') }}
+				{{ form_widget(form.Substance) }}
+			</div>
+			<div class="col-1">
+				{{ form_widget(form.recherche) }}
+			</div>
+
+		</div>
+		{{form_end(form)}}
+	</div>
+
+{% endblock %}

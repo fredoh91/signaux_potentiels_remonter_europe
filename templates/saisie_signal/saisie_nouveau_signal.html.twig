@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Saisie d'un nouveau signal
+{% endblock %}
+
+{% block body %}
+	<div
+		class="container py-5">
+		<!-- Texte explicatif en haut -->
+		<div class="alert alert-info">
+			<h5 class="alert-heading">Critères d’aide à la décision</h5>
+			<p>
+				Cette fiche d’aide à la décision a pour but de faciliter la décision ou non de remonter d’un signal potentiel de sécurité au niveau Européen dans le cadre des discussions collégiales en particulier avec les CRPV et les experts. Cette fiche ne se substitue pas à l’évaluation détaillée des évaluateurs qui est fondamentale et propre à chaque gamme, pour chaque produit et chaque effet.
+			</p>
+			<ul>
+				<li>Analyser le RCP et s’assurer que l’effet/évènement faisant l’objet du signal n’est pas présent dans le RCP et qu’il n’a pas déjà été évalué. Cette analyse devra également inclure les termes approchants qui peuvent couvrir l’effet/évènement faisant l’objet du signal.</li>
+				<li>Recherche de l’historique de la substance : Dans le cas où le signal a déjà été évalué, il est absolument nécessaire d’identifier si nous disposons de nouvelles informations sur ce signal. Si oui, alors il est envisageable de remonter le cas.</li>
+				<li>Détection de signal de l’EMA pour les procédures centralisées : une vérification devra être réalisée dans les résultats de la détection du signal menée par l’EMA faite sur les médicaments en procédure centralisée.</li>
+				<li>Imputabilité : s’assurer de disposer des cas probables ou certains.</li>
+				<li>Facteurs confondants : assurer la discussion des facteurs confondants dans le cadre de la description des cas probables ou certains.</li>
+			</ul>
+			<p>
+				Vérifier la robustesse des informations pour un nouveau signal potentiel grâce à l’évaluation des scores.
+			</p>
+		</div>
+
+		<!-- Formulaire -->
+		<div class="p-5 bg-light rounded shadow">
+			{{ form_start(form) }}
+			<div class="row mb-3">
+				<div class="col-3">
+					{{ form_label(form.Direction, 'Direction :') }}
+					{{ form_widget(form.Direction) }}
+				</div>
+				<div class="col-3">
+					{{ form_label(form.Pole, 'Pôle :') }}
+					{{ form_widget(form.Pole) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-4">
+					{{ form_label(form.EvalPrenom, 'Prénom :') }}
+					{{ form_widget(form.EvalPrenom) }}
+				</div>
+				<div class="col-4">
+					{{ form_label(form.EvalNom, 'Nom :') }}
+					{{ form_widget(form.EvalNom) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-4">
+					{{ form_label(form.Substance, 'Substance :') }}
+					{{ form_widget(form.Substance) }}
+				</div>
+				<div class="col-4">
+					{{ form_label(form.Dosage, 'Dosage :') }}
+					{{ form_widget(form.Dosage) }}
+				</div>
+				<div class="col-4">
+					{{ form_label(form.VoieAdmin, 'Voie d\'administration :') }}
+					{{ form_widget(form.VoieAdmin) }}
+				</div>
+			</div>
+
+
+
+			<div class="row mb-3">
+				{# <div class="col-4"> #}
+					{{ form_label(form.SignalPotentiel, 'Signal potentiel :') }}
+					{{ form_widget(form.SignalPotentiel) }}
+				{# </div> #}
+			</div>
+
+			<div class="row mb-3">
+				{# <div class="col-4"> #}
+					{{ form_label(form.OrigineSignal, 'Origine du signal (CM, Biblio, enquête PV,..) :') }}
+					{{ form_widget(form.OrigineSignal) }}
+				{# </div> #}
+			</div>
+
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.MecanismeAction,'1) Mécanisme d’action/plausibilité biologique (publication) :') }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.MecanismeAction) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.Exposition,'2) Nombre de cas FR au regard de l’exposition (voir Observé/Attendu lorsqu’il est possible de réaliser)/cas EU (EudraV, PSUSA) :') }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.Exposition) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.Imputabilite) }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.Imputabilite) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.Litterature) }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.Litterature) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.EssaisCliniques) }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.EssaisCliniques) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.EffetRCPautrePays,'6) Effet présent dans le RCP d’un autre pays hors EU :') }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.EffetRCPautrePays) }}
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-6">
+					{{ form_label(form.DasErmr,'7) DAS eRMR :') }}
+				</div>
+				<div class="col-6 text-start">
+					{{ form_widget(form.DasErmr) }}
+				</div>
+			</div>
+
+			<div class="text-center">
+				{{ form_widget(form.Validation) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+
+		<div class="mt-5">
+			<div class="card">
+				<div class="card-header bg-info text-white">
+					<h5 class="mb-0">Notes explicatives</h5>
+				</div>
+				<div class="card-body">
+					<p id="methode-oms">
+						<sup>1</sup> Méthode OMS :
+						<a href="https://www.who.int/publications/i/item/9789241516990" target="_blank" class="text-decoration-underline">
+							Causality assessment of an adverse event following immunization (AEFI)
+						</a>
+					</p>
+					<p id="robustesse-cas">
+						<sup>2</sup> La robustesse des cas est à définir au cas par cas mais donnera un score global :
+					</p>
+					<ul>
+						<li>Exemple : 10 cas, dont 1 cas certain au mieux → le score est de 5.</li>
+						<li>Exemple : 10 cas, dont 6 cas possibles au mieux → le score est de 1.</li>
+					</ul>
+					<p id="pertinence-litterature">
+						<sup>3</sup> La pertinence de la littérature doit être évaluée en fonction du type de données 
+						                (exemple : une étude pharmaco-épidémiologique est plus puissante en termes de signal qu’un case report) 
+						                et en fonction de la date de ces références.
+					</p>
+					<p id="score-litterature">
+						<sup>4</sup> Le score de l’analyse de la littérature est un score global. Des références peuvent être en défaveur d’un signal 
+						                quand d’autres peuvent être en faveur. L’analyse de l’évaluateur permettra de donner un score global, en faveur ou 
+						                en défaveur d’un signal, sur l’ensemble de la littérature.
+					</p>
+					<p>
+						<span class="text-decoration-underline">
+							Lorsque de la littérature en faveur et en défaveur d’un signal existe et que ces scores s’annulent, 
+							la précaution veut que nous considérions ici le score de littérature en faveur du signal, avec une force de 2.
+						</span>
+					</p>
+					<p id="disproportionalite-stat">
+						<sup>5</sup> <strong>Différence statistiquement significative</strong> en faveur du signal : Disproportionalité statistique :
+						(p > 0.05)
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
