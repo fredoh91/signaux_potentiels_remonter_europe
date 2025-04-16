@@ -6,18 +6,26 @@
 {% block body %}
 
 	<div class="container-fluid p-5">
-		{{form_start(form)}}
-		<div class="row">
-			<div class="col-4">
-				{{ form_label(form.Substance, 'Substance :') }}
-				{{ form_widget(form.Substance) }}
+		<div class="card shadow-sm">
+			<div class="card-header bg-primary text-white">
+				<h5 class="mb-0">Saisie / recherche d'une substance</h5>
 			</div>
-			<div class="col-1">
-				{{ form_widget(form.recherche) }}
+			<div class="card-body">
+				{{ form_start(form) }}
+				<div class="d-flex flex-column align-items-center">
+					<div class="col-md-6">
+						<div class="form-group">
+							{{ form_label(form.Substance, 'Substance :', {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(form.Substance, {'attr': {'class': 'form-control'}}) }}
+						</div>
+					</div>
+					<div class="col-md-6 mt-3 d-flex justify-content-center">
+						{{ form_widget(form.recherche, {'attr': {'class': 'btn btn-primary w-25'}}) }}
+					</div>
+				</div>
+				{{ form_end(form) }}
 			</div>
-
 		</div>
-		{{form_end(form)}}
 	</div>
 
 {% endblock %}

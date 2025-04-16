@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SignalPotentielRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SignalPotentielRepository::class)]
 class SignalPotentiel
@@ -23,46 +24,25 @@ class SignalPotentiel
     private ?string $PoleCourt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:'Le champ nom est obligatoire.')]
     private ?string $EvalNom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message:'Le champ prénom est obligatoire.')]
     private ?string $EvalPrenom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $Substance = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Dosage = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $VoieAdmin = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $SignalPotentiel = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $OrigineSignal = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $MecanismeAction = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $Exposition = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $Imputabilie = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $Litterature = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $EssaisCliniques = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $EffetRCPautrePays = null;
-
-    // #[ORM\Column(length: 255, nullable: true)]
-    // private ?string $DasErmr = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $Score = null;
@@ -111,6 +91,10 @@ class SignalPotentiel
 
     #[ORM\ManyToOne(inversedBy: 'SignalPotentiel')]
     private ?VoieAdmin $voieAdmin = null;
+
+    #[ORM\ManyToOne(inversedBy: 'SignalPotentiel')]
+    #[Assert\NotBlank(message:'Le champ Direction-Pôle est obligatoire.')]
+    private ?DirectionPole $directionPole = null;
 
     public function getId(): ?int
     {
@@ -236,90 +220,6 @@ class SignalPotentiel
 
         return $this;
     }
-
-    // public function getMecanismeAction(): ?string
-    // {
-    //     return $this->MecanismeAction;
-    // }
-
-    // public function setMecanismeAction(?string $MecanismeAction): static
-    // {
-    //     $this->MecanismeAction = $MecanismeAction;
-
-    //     return $this;
-    // }
-
-    // public function getExposition(): ?string
-    // {
-    //     return $this->Exposition;
-    // }
-
-    // public function setExposition(?string $Exposition): static
-    // {
-    //     $this->Exposition = $Exposition;
-
-    //     return $this;
-    // }
-
-    // public function getImputabilie(): ?string
-    // {
-    //     return $this->Imputabilie;
-    // }
-
-    // public function setImputabilie(?string $Imputabilie): static
-    // {
-    //     $this->Imputabilie = $Imputabilie;
-
-    //     return $this;
-    // }
-
-    // public function getLitterature(): ?string
-    // {
-    //     return $this->Litterature;
-    // }
-
-    // public function setLitterature(?string $Litterature): static
-    // {
-    //     $this->Litterature = $Litterature;
-
-    //     return $this;
-    // }
-
-    // public function getEssaisCliniques(): ?string
-    // {
-    //     return $this->EssaisCliniques;
-    // }
-
-    // public function setEssaisCliniques(?string $EssaisCliniques): static
-    // {
-    //     $this->EssaisCliniques = $EssaisCliniques;
-
-    //     return $this;
-    // }
-
-    // public function getEffetRCPautrePays(): ?string
-    // {
-    //     return $this->EffetRCPautrePays;
-    // }
-
-    // public function setEffetRCPautrePays(?string $EffetRCPautrePays): static
-    // {
-    //     $this->EffetRCPautrePays = $EffetRCPautrePays;
-
-    //     return $this;
-    // }
-
-    // public function getDasErmr(): ?string
-    // {
-    //     return $this->DasErmr;
-    // }
-
-    // public function setDasErmr(?string $DasErmr): static
-    // {
-    //     $this->DasErmr = $DasErmr;
-
-    //     return $this;
-    // }
 
     public function getScore(): ?int
     {
@@ -509,6 +409,18 @@ class SignalPotentiel
     public function setVoieAdmin(?VoieAdmin $voieAdmin): static
     {
         $this->voieAdmin = $voieAdmin;
+
+        return $this;
+    }
+
+    public function getDirectionPole(): ?DirectionPole
+    {
+        return $this->directionPole;
+    }
+
+    public function setDirectionPole(?DirectionPole $directionPole): static
+    {
+        $this->directionPole = $directionPole;
 
         return $this;
     }

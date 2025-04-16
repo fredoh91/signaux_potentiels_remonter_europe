@@ -2,25 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Pole;
+// use App\Entity\Pole;
 use App\Entity\DasErmr;
-use App\Entity\Direction;
+// use App\Entity\Direction;
 use App\Entity\VoieAdmin;
 use App\Entity\Exposition;
 use App\Entity\Litterature;
 use App\Entity\Imputabilite;
+use App\Entity\DirectionPole;
 use App\Entity\EssaisCliniques;
 use App\Entity\MecanismeAction;
 use App\Entity\SignalPotentiel;
 use App\Entity\EffetRCPautrePays;
-use App\Repository\PoleRepository;
+// use App\Repository\PoleRepository;
 use App\Repository\DasErmrRepository;
-use App\Repository\DirectionRepository;
+// use App\Repository\DirectionRepository;
 use App\Repository\VoieAdminRepository;
 use App\Repository\ExpositionRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\LitteratureRepository;
 use App\Repository\ImputabiliteRepository;
+use App\Repository\DirectionPoleRepository;
 use App\Repository\EssaisCliniquesRepository;
 use App\Repository\MecanismeActionRepository;
 use App\Repository\EffetRCPautrePaysRepository;
@@ -29,7 +31,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+// use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SignalPotentielType extends AbstractType
@@ -37,27 +39,15 @@ class SignalPotentielType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Direction', EntityType::class, [
-                'class' => Direction::class,
+            ->add('DirectionPole', EntityType::class, [
+                'class' => DirectionPole::class,
                 'choice_label' => 'LibelleCourt',
-                'query_builder' => function (DirectionRepository $er) {
+                'choice_label' => fn(DirectionPole $directionPole) => $directionPole->getLibelleDmmCourt() . ' - ' . $directionPole->getLibellePoleCourt() ,
+                'query_builder' => function (DirectionPoleRepository $er) {
                     return $er->createQueryBuilder('d')
                         ->andWhere('d.Inactif = 0')
-                        ->orderBy('d.LibelleCourt', 'ASC');
-                },
-                'attr' => [
-                    'class' => 'form-select',
-                ],
-                'placeholder' => '',
-                'required' => true,
-            ])
-            ->add('Pole', EntityType::class, [
-                'class' => Pole::class,
-                'choice_label' => 'LibelleCourt',
-                'query_builder' => function (PoleRepository $er) {
-                    return $er->createQueryBuilder('d')
-                        ->andWhere('d.Inactif = 0')
-                        ->orderBy('d.LibelleCourt', 'ASC');
+                        ->orderBy('d.LibelleDmmCourt', 'ASC')
+                        ->addOrderBy('d.LibellePoleCourt', 'ASC');
                 },
                 'attr' => [
                     'class' => 'form-select',
@@ -110,11 +100,13 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'required' => false,
             ])
             ->add('OrigineSignal', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'required' => false,
             ])
             ->add('MecanismeAction', EntityType::class, [
                 'class' => MecanismeAction::class,
@@ -231,6 +223,7 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'required' => false,
             ])
             ->add('Validation', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary m-2'],

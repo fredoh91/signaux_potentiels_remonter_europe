@@ -1,66 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Saisie d'un nouveau signal
-{% endblock %}
+{% block title %}Saisie d'un nouveau signal potentiel{% endblock %}
 
 {% block body %}
-	<div
-		class="container py-5">
-		<!-- Texte explicatif en haut -->
-		<div class="alert alert-info">
-			<h5 class="alert-heading">Critères d’aide à la décision</h5>
-			<p>
-				Cette fiche d’aide à la décision a pour but de faciliter la décision ou non de remonter d’un signal potentiel de sécurité au niveau Européen dans le cadre des discussions collégiales en particulier avec les CRPV et les experts. Cette fiche ne se substitue pas à l’évaluation détaillée des évaluateurs qui est fondamentale et propre à chaque gamme, pour chaque produit et chaque effet.
-			</p>
-			<ul>
-				<li>Analyser le RCP et s’assurer que l’effet/évènement faisant l’objet du signal n’est pas présent dans le RCP et qu’il n’a pas déjà été évalué. Cette analyse devra également inclure les termes approchants qui peuvent couvrir l’effet/évènement faisant l’objet du signal.</li>
-				<li>Recherche de l’historique de la substance : Dans le cas où le signal a déjà été évalué, il est absolument nécessaire d’identifier si nous disposons de nouvelles informations sur ce signal. Si oui, alors il est envisageable de remonter le cas.</li>
-				<li>Détection de signal de l’EMA pour les procédures centralisées : une vérification devra être réalisée dans les résultats de la détection du signal menée par l’EMA faite sur les médicaments en procédure centralisée.</li>
-				<li>Imputabilité : s’assurer de disposer des cas probables ou certains.</li>
-				<li>Facteurs confondants : assurer la discussion des facteurs confondants dans le cadre de la description des cas probables ou certains.</li>
-			</ul>
-			<p>
-				Vérifier la robustesse des informations pour un nouveau signal potentiel grâce à l’évaluation des scores.
-			</p>
+<div
+	class="container py-5">
+	<!-- Texte explicatif en haut -->
+	<div class="alert alert-info">
+		<h5 class="alert-heading">Critères d’aide à la décision</h5>
+		<p>
+			Cette fiche d’aide à la décision a pour but de faciliter la décision ou non de remonter d’un signal potentiel de sécurité au niveau Européen dans le cadre des discussions collégiales en particulier avec les CRPV et les experts. Cette fiche ne se substitue pas à l’évaluation détaillée des évaluateurs qui est fondamentale et propre à chaque gamme, pour chaque produit et chaque effet.
+		</p>
+		<ul>
+			<li>Analyser le RCP et s’assurer que l’effet/évènement faisant l’objet du signal n’est pas présent dans le RCP et qu’il n’a pas déjà été évalué. Cette analyse devra également inclure les termes approchants qui peuvent couvrir l’effet/évènement faisant l’objet du signal.</li>
+			<li>Recherche de l’historique de la substance : Dans le cas où le signal a déjà été évalué, il est absolument nécessaire d’identifier si nous disposons de nouvelles informations sur ce signal. Si oui, alors il est envisageable de remonter le cas.</li>
+			<li>Détection de signal de l’EMA pour les procédures centralisées : une vérification devra être réalisée dans les résultats de la détection du signal menée par l’EMA faite sur les médicaments en procédure centralisée.</li>
+			<li>Imputabilité : s’assurer de disposer des cas probables ou certains.</li>
+			<li>Facteurs confondants : assurer la discussion des facteurs confondants dans le cadre de la description des cas probables ou certains.</li>
+		</ul>
+		<p>
+			Vérifier la robustesse des informations pour un nouveau signal potentiel grâce à l’évaluation des scores.
+		</p>
+	</div>
+
+	<!-- Formulaire -->
+	<div class="p-5 bg-secondary rounded shadow" style="--bs-bg-opacity: .3;">
+		{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{# Affiche les erreurs globales du formulaire #}
+
+		<div class="row mb-3">
+			<div class="col-4">
+				{{ form_label(form.DirectionPole, 'Direction - Pôle :') }}
+				{{ form_widget(form.DirectionPole) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.DirectionPole) }}
+				</div>
+			</div>
+			<div class="col-4">
+				{{ form_label(form.EvalPrenom, 'Prénom :') }}
+				{{ form_widget(form.EvalPrenom) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.EvalPrenom) }}
+				</div>
+			</div>
+			<div class="col-4">
+				{{ form_label(form.EvalNom, 'Nom :') }}
+				{{ form_widget(form.EvalNom) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.EvalNom) }}
+				</div>
+			</div>
 		</div>
 
-		<!-- Formulaire -->
-		<div class="p-5 bg-secondary rounded shadow" style="--bs-bg-opacity: .3;">
-			{{ form_start(form) }}
-			<div class="row mb-3">
-				<div class="col-3">
-					{{ form_label(form.Direction, 'Direction :') }}
-					{{ form_widget(form.Direction) }}
-				</div>
-				<div class="col-3">
-					{{ form_label(form.Pole, 'Pôle :') }}
-					{{ form_widget(form.Pole) }}
+		<div class="row mb-3">
+			<div class="col-4">
+				{{ form_label(form.Substance, 'Substance :') }}
+				{{ form_widget(form.Substance) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.Substance) }}
 				</div>
 			</div>
-
-			<div class="row mb-3">
-				<div class="col-4">
-					{{ form_label(form.EvalPrenom, 'Prénom :') }}
-					{{ form_widget(form.EvalPrenom) }}
-				</div>
-				<div class="col-4">
-					{{ form_label(form.EvalNom, 'Nom :') }}
-					{{ form_widget(form.EvalNom) }}
+			<div class="col-4">
+				{{ form_label(form.Dosage, 'Dosage :') }}
+				{{ form_widget(form.Dosage) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.Dosage) }}
 				</div>
 			</div>
-
-			<div class="row mb-3">
-				<div class="col-4">
-					{{ form_label(form.Substance, 'Substance :') }}
-					{{ form_widget(form.Substance) }}
-				</div>
-				<div class="col-4">
-					{{ form_label(form.Dosage, 'Dosage :') }}
-					{{ form_widget(form.Dosage) }}
-				</div>
-				<div class="col-4">
-					{{ form_label(form.VoieAdmin, 'Voie d\'administration :') }}
+			<div class="col-4">
+				{{ form_label(form.VoieAdmin, 'Voie d\'administration :') }}
 					{{ form_widget(form.VoieAdmin) }}
+        <div class="invalid-feedback">
+            {{ form_errors(form.VoieAdmin) }}
+        </div>
 				</div>
 			</div>
 
@@ -70,6 +83,9 @@
 				{# <div class="col-4"> #}
 					{{ form_label(form.SignalPotentiel, 'Signal potentiel :') }}
 					{{ form_widget(form.SignalPotentiel) }}
+					{# <div class="invalid-feedback">
+						{{ form_errors(form.SignalPotentiel) }}
+					</div> #}
 				{# </div> #}
 			</div>
 
@@ -77,6 +93,9 @@
 				{# <div class="col-4"> #}
 					{{ form_label(form.OrigineSignal, 'Origine du signal (CM, Biblio, enquête PV,..) :') }}
 					{{ form_widget(form.OrigineSignal) }}
+					{# <div class="invalid-feedback">
+						{{ form_errors(form.OrigineSignal) }}
+					</div> #}
 				{# </div> #}
 			</div>
 
@@ -87,6 +106,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.MecanismeAction) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.MecanismeAction) }}
+					</div>
 				</div>
 			</div>
 
@@ -96,6 +118,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.Exposition) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.Exposition) }}
+					</div>
 				</div>
 			</div>
 
@@ -105,6 +130,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.Imputabilite) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.Imputabilite) }}
+					</div>
 				</div>
 			</div>
 
@@ -114,6 +142,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.Litterature) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.Litterature) }}
+					</div>
 				</div>
 			</div>
 
@@ -123,6 +154,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.EssaisCliniques) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.EssaisCliniques) }}
+					</div>
 				</div>
 			</div>
 
@@ -132,6 +166,9 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.EffetRCPautrePays) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.EffetRCPautrePays) }}
+					</div>
 				</div>
 			</div>
 
@@ -141,16 +178,22 @@
 				</div>
 				<div class="col-6 text-start">
 					{{ form_widget(form.DasErmr) }}
+					<div class="invalid-feedback">
+						{{ form_errors(form.EvalNom) }}
+					</div>
 				</div>
 			</div>
 
-
-			<div class="row mb-3">
-				{# <div class="col-4"> #}
-					{{ form_label(form.Score, 'Score :') }}
-					{{ form_widget(form.Score) }}
-				{# </div> #}
-			</div>
+			{# <div class="text-center"> #}
+				<div class="row mb-3 d-flex justify-content-center">
+					<div class="col-1 text-end">
+						{{ form_label(form.Score, 'Score :') }}
+					</div>
+					<div class="col-1">
+						{{ form_widget(form.Score) }}
+					</div>
+				</div>
+			{# </div> #}
 
 			<div class="row mb-3">
 				{# <div class="col-4"> #}
@@ -208,4 +251,9 @@
 			</div>
 		</div>
 	</div>
+
+<script src="{{ asset('js/updateScore.js') }}"></script>
+
+
 {% endblock %}
+

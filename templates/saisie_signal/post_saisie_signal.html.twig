@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Signal potentiel
+{% endblock %}
+
+{% block body %}
+
+	{% if signalPotentiel is not null %}
+		<div class="container py-5">
+			<h1 class="text-center">Signal potentiel</h1>
+			<div class="card mb-4">
+
+				<div class="card-header bg-primary text-white">
+					Substance/dosage/voie d'aministration
+				</div>
+				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
+					<strong>Substance :</strong>
+					{{ signalPotentiel.Substance }}<br>
+					<strong>Dosage :</strong>
+					{{ signalPotentiel.Dosage }}<br>
+					<strong>Voie d'administration :</strong>
+					{{ signalPotentiel.VoieAdmin.Libelle }}<br>
+				</div>
+			</div>
+
+			<div class="card mb-4">
+				<div class="card-header bg-primary text-white">
+					Signal potentiel et origine
+				</div>
+				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
+					<strong>Signal potentiel :</strong><br>
+					{{ signalPotentiel.SignalPotentiel }}<br>
+					<strong>Origine du signal (CM, Biblio, enquête PV,..) :</strong><br>
+					{{ signalPotentiel.OrigineSignal }}<br>
+				</div>
+			</div>
+
+			<div class="card mb-4">
+				<div class="card-header bg-primary text-white">
+					Informations détaillées
+				</div>
+				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
+					<p>
+						<strong>1) Mécanisme d’action/plausibilité biologique (publication) :</strong><br>
+						{{ signalPotentiel.MecanismeAction.Libelle }}
+						({{ signalPotentiel.MecanismeAction.Score }})
+					</p>
+					<p>
+						<strong>2) Nombre de cas FR au regard de l’exposition (voir Observé/Attendu lorsqu’il est possible de réaliser)/cas EU (EudraV, PSUSA) :</strong><br>
+						{{ signalPotentiel.Exposition.Libelle }}
+						({{ signalPotentiel.Exposition.Score }})
+					</p>
+					<p>
+						<strong>3) Robustesse des cas disponibles : Imputabilité (méthode OMS) :</strong><br>
+						{{ signalPotentiel.Imputabilite.Libelle }}
+						({{ signalPotentiel.Imputabilite.Score }})
+					</p>
+					<p>
+						<strong>4) Littérature (étude non-clinique, étude pharmacoépidémiologie, case reports, Métanalyse, etc.) :</strong><br>
+						{{ signalPotentiel.Litterature.Libelle }}
+						({{ signalPotentiel.Litterature.Score }})
+					</p>
+					<p>
+						<strong>5) Essais cliniques :</strong><br>
+						{{ signalPotentiel.EssaisCliniques.Libelle }}
+						({{ signalPotentiel.EssaisCliniques.Score }})
+					</p>
+					<p>
+						<strong>6) Effet présent dans le RCP d’un autre pays hors EU :</strong><br>
+						{{ signalPotentiel.EffetRCPautrePays.Libelle }}
+						({{ signalPotentiel.EffetRCPautrePays.Score }})
+					</p>
+					<p>
+						<strong>7) DAS eRMR :</strong><br>
+						{{ signalPotentiel.DasErmr.Libelle }}
+						({{ signalPotentiel.DasErmr.Score }})
+					</p>
+					<p>
+						<strong>Score Total :</strong>
+						{{ signalPotentiel.Score }}
+					</p>
+				</div>
+			</div>
+
+			<div class="card mb-4">
+				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
+					<strong>Commentaire libre :</strong><br>
+					{{ signalPotentiel.Commentaire }}<br>
+				</div>
+			</div>
+
+			<div class="card mb-4">
+				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
+					<strong>Prénom :</strong>
+					{{ signalPotentiel.EvalPrenom }}<br>
+					<strong>Nom :</strong>
+					{{ signalPotentiel.EvalNom }}<br>
+				</div>
+			</div>
+			<div class="text-center">
+				<a href="{{ path('app_recherche_substance') }}" class="btn btn-primary">Saisie/recherche d'une substance</a>
+			</div>
+		</div>
+	{% else %}
+		<div class="container py-5">
+			<h1 class="text-center">Aucun signal potentiel</h1>
+			<div class="alert alert-danger" role="alert">
+				Aucun signal potentiel n'a été trouvé.
+			</div>
+			<div class="text-center">
+				<a href="{{ path('app_recherche_substance') }}" class="btn btn-primary">Saisie/recherche d'une substance</a>
+			</div>
+		</div>
+	{% endif %}
+
+
+{% endblock %}
