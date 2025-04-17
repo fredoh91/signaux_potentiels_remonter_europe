@@ -43,4 +43,20 @@ final class RechercheSubstanceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/recherche_toutes_substances', name: 'app_recherche_toutes_substances')]
+    public function RechercheToutesSubstances(EntityManagerInterface $em): Response
+    {
+        $repository = $em->getRepository(SignalPotentiel::class);
+        $lstSignauxSaisis = $repository->findAll();
+        if (!$lstSignauxSaisis) {
+            // Aucune substance trouvée. On redirige vers l'écran de saisie pour la créer
+            return $this->redirectToRoute('app_home');
+        } else {
+            // Une ou plusieurs substances trouvées. On affiche les résultats pour que l'utilisateur puisse modifier la ligne qu'il souhaite ou en créer une nouvelle
+        }
+
+        return $this->render('recherche_substance/liste_toutes_substances.html.twig', [
+            'lstSignauxSaisis' => $lstSignauxSaisis,
+        ]);
+    }
 }

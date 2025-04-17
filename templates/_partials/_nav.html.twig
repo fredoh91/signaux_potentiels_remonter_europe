@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path ('app_home') }}">Signaux Potentiels à remonter à l’Europe</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+
+      {# {% if is_granted('ROLE_DMM_EVAL') or is_granted('ROLE_SURV_PILOTEVEC') %} #}
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              saisie des signaux
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              {# <li><a class="dropdown-item" href="{{ path ('app_affiche_susar_eu') }}">test : liste des SUSARs (master_id)</a></li> #}
+              <li><a class="dropdown-item" href="{{ path ('app_recherche_substance') }}">Saisir/rechercher un signal</a></li>
+            </ul>
+          </li>
+        </ul>
+			{# {% endif %}
+
+      {% if is_granted('ROLE_DMFR_GEST') %} #}
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Liste des signaux
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="{{ path ('app_recherche_toutes_substances') }}">Liste des signaux saisis</a></li>
+              {# <li><a class="dropdown-item" href="{{ path ('app_upload_excel_active_sub_grouping') }}">Import du fichier "Active substance grouping"</a></li>
+              <li><a class="dropdown-item" href="{{ path ('app_aff_active_sub_grouping') }}">Affichage "Active substance grouping"</a></li>
+              <li><a class="dropdown-item" href="{{ path ('app_import_excel_ctll') }}">Import d'un fichier CTLL</a></li> #}
+
+            </ul>
+          </li>
+        </ul>
+			{# {% endif %} #}
+
+      {# {% if is_granted('ROLE_DMFR_ADMIN') or is_granted('ROLE_SURV_ADMIN') %} #}
+      {# <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path ('app_admin_tbref') }}">Administration</a>
+        </li>
+      </ul> #}
+      {# {% endif %} #}
+
+
+      {# Liens pour la connexion/deconnexion #}
+      {# <ul class="navbar-nav ms-auto mb-2 mb-lg-0"> #}
+        {# {% if app.user %} #}
+          {# <li class="nav-item">
+            <a class="nav-link" href="{{ path ('app_logout') }}">Deconnexion</a>
+          </li> #}
+          {# {% if is_granted('ROLE_SUPER_ADMIN') == false %} #}
+            {# <li class="nav-item">
+              <a class="nav-link" href="{{ path ('app_modif_user_password') }}">Modification de mon mot de passe</a>
+            </li> #}
+          {# {% endif %}
+        {% else %} #}
+          {# <li class="nav-item">
+            <a class="nav-link" href="{{ path ('app_login') }}">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path ('app_contact_admin') }}">Inscription</a>
+          </li> #}
+        {# {% endif %} #}
+      {# </ul> #}
+    </div>
+  </div>
+</nav>

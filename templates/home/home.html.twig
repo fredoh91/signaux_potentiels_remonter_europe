@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Signaux Potentiels à remonter à l’Europe
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="text-center">
+			<h1 class="text-center">Signaux Potentiels à remonter à l’Europe</h1>
+			<ul>
+				{# {% if is_granted('ROLE_SUPER_ADMIN') %}
+					<li class="">
+						<a class="" href="{{ path ('app_affiche_susar_eu') }}">test : liste des SUSARs (master_id)</a>
+					</li>
+				{% endif %}
+				{% if is_granted('ROLE_DMM_EVAL') or is_granted('ROLE_SURV_PILOTEVEC') %}
+				<li class="">
+					<a class="" href="{{ path ('app_liste_susar_eu_init') }}">Liste des SUSARs (type SUSAR_EU)</a>
+				</li>
+				{% endif %}
+				{% if is_granted('ROLE_DMFR_REF') or is_granted('ROLE_SURV_PILOTEVEC') %}
+				<li class="">
+					<a class="" href="{{ path ('app_intervenant_substance') }}">Intervenants/substances</a>
+				</li>
+				{% endif %} #}
+			</ul>
+		</div>
+	</div>
+	{# Affichage d'un message en cas de redirection vers cette page d'accueil, par exemple après la modif du mot de passe par l'utilisateur connecté #}
+	<div class="p-3">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
