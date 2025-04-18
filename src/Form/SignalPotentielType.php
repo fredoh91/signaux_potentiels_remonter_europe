@@ -70,6 +70,12 @@ class SignalPotentielType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('Specialite', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'required' => false,
+            ])
             ->add('Dosage', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',

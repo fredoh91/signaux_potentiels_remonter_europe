@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Saisie d'un nouveau signal potentiel{% endblock %}
+{% block title %}Saisie d'un nouveau signal potentiel
+{% endblock %}
 
 {% block body %}
 <div
@@ -54,26 +55,33 @@
 		</div>
 
 		<div class="row mb-3">
-			<div class="col-4">
+			<div class="col-3">
 				{{ form_label(form.Substance, 'Substance :') }}
 				{{ form_widget(form.Substance) }}
 				<div class="invalid-feedback">
 					{{ form_errors(form.Substance) }}
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-5">
+				{{ form_label(form.Specialite, 'Spécialité :') }}
+				{{ form_widget(form.Specialite) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.Specialite) }}
+				</div>
+			</div>
+			<div class="col-2">
 				{{ form_label(form.Dosage, 'Dosage :') }}
 				{{ form_widget(form.Dosage) }}
 				<div class="invalid-feedback">
 					{{ form_errors(form.Dosage) }}
 				</div>
 			</div>
-			<div class="col-4">
+			<div class="col-2">
 				{{ form_label(form.VoieAdmin, 'Voie d\'administration :') }}
-					{{ form_widget(form.VoieAdmin) }}
-        <div class="invalid-feedback">
-            {{ form_errors(form.VoieAdmin) }}
-        </div>
+				{{ form_widget(form.VoieAdmin) }}
+				<div class="invalid-feedback">
+					{{ form_errors(form.VoieAdmin) }}
+				</div>
 				</div>
 			</div>
 
@@ -256,4 +264,3 @@
 
 
 {% endblock %}
-

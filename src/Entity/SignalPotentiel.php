@@ -96,6 +96,9 @@ class SignalPotentiel
     #[Assert\NotBlank(message:'Le champ Direction-Pôle est obligatoire.')]
     private ?DirectionPole $directionPole = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Specialite = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -421,6 +424,18 @@ class SignalPotentiel
     public function setDirectionPole(?DirectionPole $directionPole): static
     {
         $this->directionPole = $directionPole;
+
+        return $this;
+    }
+
+    public function getSpecialite(): ?string
+    {
+        return $this->Specialite;
+    }
+
+    public function setSpecialite(?string $Specialite): static
+    {
+        $this->Specialite = $Specialite;
 
         return $this;
     }
