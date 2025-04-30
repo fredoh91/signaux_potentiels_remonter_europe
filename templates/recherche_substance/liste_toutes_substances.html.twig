@@ -1,47 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des signaux potentiels déjà saisis dans la base{% endblock %}
+{% block title %}Liste des signaux potentiels déjà saisis dans la base
+{% endblock %}
 
 {% block body %}
-<div class="container py-5">
-    <h1 class="text-center mb-4">Liste des signaux potentiels</h1>
-    {% if lstSignauxSaisis %}
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Substance</th>
-                        <th scope="col">Spécialité</th>
-                        <th scope="col">Dosage</th>
-                        <th scope="col">Voie d'administration</th>
-                        <th scope="col">Score</th>
-                        {# <th scope="col">Modifier ce signal</th> #}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for signal in lstSignauxSaisis %}
-                        <tr>
-                            <td>{{ signal.Substance }}</td>
-                            <td>{{ signal.Specialite }}</td>
-                            <td>{{ signal.Dosage }}</td>
-                            <td>{{ signal.VoieAdmin.Libelle }}</td>
-                            {% if signal.Score >= 5 %}
-                                <td class="text-danger">{{ signal.Score }}</td>
-                            {% else %}
-                                <td class="text-success">{{ signal.Score }}</td>
-                            {% endif %}
+	<div class="container py-5">
+		<h1 class="text-center mb-4">Liste des signaux potentiels</h1>
+		{% if lstSignauxSaisis %}
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">Substance</th>
+							<th scope="col">Spécialité</th>
+							<th scope="col">Dosage</th>
+							<th scope="col">Voie d'administration</th>
+							<th scope="col">Score</th>
+							{# <th scope="col">Modifier ce signal</th> #}
+						</tr>
+					</thead>
+					<tbody>
+						{% for signal in lstSignauxSaisis %}
+							<tr>
+								<td>{{ signal.Substance }}</td>
+								<td>{{ signal.Specialite }}</td>
+								<td>{{ signal.Dosage }}</td>
+								{# <td>{{ signal.VoieAdmin.Libelle }}</td> #}
+								{% if signal.VoieAdmin is null %}
+									<td></td>
+								{% else %}
+									<td>{{ signal.VoieAdmin.Libelle }}</td>
+								{% endif %}
+								{% if signal.Score >= 5 %}
+									<td class="text-danger">{{ signal.Score }}</td>
+								{% else %}
+									<td class="text-success">{{ signal.Score }}</td>
+								{% endif %}
 
-                            {# <td><a href="{{ path('app_edit_signal', { 'idSigPot': signal.id }) }}" class="btn btn-primary">Modifier</a><td> #}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+								{# <td><a href="{{ path('app_edit_signal', { 'idSigPot': signal.id }) }}" class="btn btn-primary">Modifier</a><td> #}
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 
-    {% else %}
-        <div class="alert alert-warning text-center">
-            Aucun signal trouvé pour cette substance.
-        </div>
-    {% endif %}
-</div>
+		{% else %}
+			<div class="alert alert-warning text-center">
+				Aucun signal trouvé pour cette substance.
+			</div>
+		{% endif %}
+	</div>
 {% endblock %}
