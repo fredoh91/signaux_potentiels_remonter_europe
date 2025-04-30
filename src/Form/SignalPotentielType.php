@@ -80,12 +80,13 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'required' => false,
             ])
-            ->add('VoieAdmin', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
+            // ->add('VoieAdmin', TextType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control',
+            //     ],
+            // ])
             
             ->add('VoieAdmin', EntityType::class, [
                 'class' => VoieAdmin::class,
@@ -100,7 +101,7 @@ class SignalPotentielType extends AbstractType
                 'attr' => [
                     'class' => 'form-select',
                 ],
-                'required' => true,
+                'required' => false,
             ])
             ->add('SignalPotentiel', TextType::class, [
                 'attr' => [

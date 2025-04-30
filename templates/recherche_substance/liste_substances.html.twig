@@ -40,7 +40,12 @@
                             <td>{{ signal.Substance }}</td>
                             <td>{{ signal.Specialite }}</td>
                             <td>{{ signal.Dosage }}</td>
-                            <td>{{ signal.VoieAdmin.Libelle }}</td>
+                            {% if signal.VoieAdmin is null %}
+                                <td></td>
+                            {% else %}
+                                <td>{{ signal.VoieAdmin.Libelle }}</td>
+                            {% endif %}
+                            {# <td>{{ signal.VoieAdmin.Libelle }}</td> #}
                             {% if signal.Score >= 5 %}
                                 <td class="text-danger">{{ signal.Score }}</td>
                             {% else %}

@@ -21,7 +21,11 @@
 					<strong>Dosage :</strong>
 					{{ signalPotentiel.Dosage }}<br>
 					<strong>Voie d'administration :</strong>
-					{{ signalPotentiel.VoieAdmin.Libelle }}<br>
+					{% if signalPotentiel.VoieAdmin is null %}
+						<br>
+					{% else %}
+						{{ signalPotentiel.VoieAdmin.Libelle }}<br>
+					{% endif %}
 				</div>
 			</div>
 
