@@ -131,9 +131,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('Exposition', EntityType::class, [
                 'class' => Exposition::class,
@@ -145,9 +146,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('Imputabilite', EntityType::class, [
                 'label' => '3) Robustesse des cas disponibles : Imputabilité (méthode OMS<sup><a href="#methode-oms" class="text-decoration-none">1</a></sup>)<sup><a href="#robustesse-cas" class="text-decoration-none">2</a></sup> :',
@@ -161,9 +163,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('Litterature', EntityType::class, [
                 'label' => '4) Littérature (étude non-clinique, étude pharmacoépidémiologie, case reports, Métanalyse, etc.<sup><a href="#pertinence-litterature" class="text-decoration-none">3</a></sup>)<sup><a href="#score-litterature" class="text-decoration-none">4</a></sup> :',
@@ -177,9 +180,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('EssaisCliniques', EntityType::class, [
                 'label' => '5) Essais cliniques<sup><a href="#disproportionalite-stat" class="text-decoration-none">5</a></sup> :',
@@ -193,9 +197,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('EffetRCPautrePays', EntityType::class, [
                 'class' => EffetRCPautrePays::class,
@@ -207,9 +212,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('DasErmr', EntityType::class, [
                 'class' => DasErmr::class,
@@ -221,9 +227,10 @@ class SignalPotentielType extends AbstractType
                 },
                 'attr' => [
                     'class' => 'form-select',
+                    'data-scoring-field' => 'true',
                 ],
                 'placeholder' => '',
-                'required' => true,
+                'required' => false,
             ])
             ->add('Score', TextType::class, [
                 'attr' => [

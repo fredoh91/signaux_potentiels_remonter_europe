@@ -33,19 +33,57 @@ final class SaisieSignalController extends AbstractController
             
             $dateNow = new DateTimeImmutable();
 
-            $score = $signalPotentiel->getMecanismeAction()->getScore()
-                    + $signalPotentiel->getExposition()->getScore()
-                    + $signalPotentiel->getImputabilite()->getScore()
-                    + $signalPotentiel->getLitterature()->getScore()
-                    + $signalPotentiel->getEssaisCliniques()->getScore()      
-                    + $signalPotentiel->getEffetRCPautrePays()->getScore()
-                    + $signalPotentiel->getDasErmr()->getScore();
+            // $score = $signalPotentiel->getMecanismeAction()->getScore()
+            //         + $signalPotentiel->getExposition()->getScore()
+            //         + $signalPotentiel->getImputabilite()->getScore()
+            //         + $signalPotentiel->getLitterature()->getScore()
+            //         + $signalPotentiel->getEssaisCliniques()->getScore()      
+            //         + $signalPotentiel->getEffetRCPautrePays()->getScore()
+            //         + $signalPotentiel->getDasErmr()->getScore();
+
+            $scores = [];
+            $scoreTotal = null;
+
+            // Vérifie chaque objet avant d'appeler getScore()
+            if ($signalPotentiel->getMecanismeAction() === null ||
+                $signalPotentiel->getExposition() === null ||
+                $signalPotentiel->getImputabilite() === null ||
+                $signalPotentiel->getLitterature() === null ||
+                $signalPotentiel->getEssaisCliniques() === null ||
+                $signalPotentiel->getEffetRCPautrePays() === null ||
+                $signalPotentiel->getDasErmr() === null) {
+                $scoreTotal = null;
+            } else {
+                $scores = [
+                    $signalPotentiel->getMecanismeAction()->getScore(),
+                    $signalPotentiel->getExposition()->getScore(),
+                    $signalPotentiel->getImputabilite()->getScore(),
+                    $signalPotentiel->getLitterature()->getScore(),
+                    $signalPotentiel->getEssaisCliniques()->getScore(),
+                    $signalPotentiel->getEffetRCPautrePays()->getScore(),
+                    $signalPotentiel->getDasErmr()->getScore(),
+                ];
+
+                // Vérifie si l'un des scores est null
+                foreach ($scores as $score) {
+                    if ($score === null) {
+                        $scoreTotal = null;
+                        break;
+                    }
+                }
+
+                // Si aucun score n'est null, calcule la somme
+                if ($scoreTotal !== null) {
+                    $scoreTotal = array_sum($scores);
+                }
+            }
+
 
             $entityManager = $doctrine->getManager();
             $signalPotentiel->setCreatedAt($dateNow);
             $signalPotentiel->setUpdatedAt($dateNow);
             $signalPotentiel->setEvalNom(strtoupper($signalPotentiel->getEvalNom()));
-            $signalPotentiel->setScore($score);
+            $signalPotentiel->setScore($scoreTotal);
             $entityManager->persist($signalPotentiel);
             $entityManager->flush();
             $idSigPot=$signalPotentiel->getId();
@@ -93,19 +131,57 @@ final class SaisieSignalController extends AbstractController
             
             $dateNow = new DateTimeImmutable();
 
-            $score = $signalPotentiel->getMecanismeAction()->getScore()
-                    + $signalPotentiel->getExposition()->getScore()
-                    + $signalPotentiel->getImputabilite()->getScore()
-                    + $signalPotentiel->getLitterature()->getScore()
-                    + $signalPotentiel->getEssaisCliniques()->getScore()      
-                    + $signalPotentiel->getEffetRCPautrePays()->getScore()
-                    + $signalPotentiel->getDasErmr()->getScore();
+            // $score = $signalPotentiel->getMecanismeAction()->getScore()
+            //         + $signalPotentiel->getExposition()->getScore()
+            //         + $signalPotentiel->getImputabilite()->getScore()
+            //         + $signalPotentiel->getLitterature()->getScore()
+            //         + $signalPotentiel->getEssaisCliniques()->getScore()      
+            //         + $signalPotentiel->getEffetRCPautrePays()->getScore()
+            //         + $signalPotentiel->getDasErmr()->getScore();
+
+            $scores = [];
+            $scoreTotal = null;
+
+            // Vérifie chaque objet avant d'appeler getScore()
+            if ($signalPotentiel->getMecanismeAction() === null ||
+                $signalPotentiel->getExposition() === null ||
+                $signalPotentiel->getImputabilite() === null ||
+                $signalPotentiel->getLitterature() === null ||
+                $signalPotentiel->getEssaisCliniques() === null ||
+                $signalPotentiel->getEffetRCPautrePays() === null ||
+                $signalPotentiel->getDasErmr() === null) {
+                $scoreTotal = null;
+            } else {
+                $scores = [
+                    $signalPotentiel->getMecanismeAction()->getScore(),
+                    $signalPotentiel->getExposition()->getScore(),
+                    $signalPotentiel->getImputabilite()->getScore(),
+                    $signalPotentiel->getLitterature()->getScore(),
+                    $signalPotentiel->getEssaisCliniques()->getScore(),
+                    $signalPotentiel->getEffetRCPautrePays()->getScore(),
+                    $signalPotentiel->getDasErmr()->getScore(),
+                ];
+
+                // Vérifie si l'un des scores est null
+                foreach ($scores as $score) {
+                    if ($score === null) {
+                        $scoreTotal = null;
+                        break;
+                    }
+                }
+
+                // Si aucun score n'est null, calcule la somme
+                if ($scoreTotal !== null) {
+                    $scoreTotal = array_sum($scores);
+                }
+            }
+
 
             $entityManager = $doctrine->getManager();
             // $signalPotentiel->setCreatedAt($dateNow);
             $signalPotentiel->setUpdatedAt($dateNow);
             $signalPotentiel->setEvalNom(strtoupper($signalPotentiel->getEvalNom()));
-            $signalPotentiel->setScore($score);
+            $signalPotentiel->setScore($scoreTotal);
             $entityManager->persist($signalPotentiel);
             $entityManager->flush();
             $idSigPot=$signalPotentiel->getId();

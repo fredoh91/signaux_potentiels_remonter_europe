@@ -50,38 +50,71 @@
 				<div class="card-body bg-secondary" style="--bs-bg-opacity: .3;">
 					<p>
 						<strong>1) Mécanisme d’action/plausibilité biologique (publication) :</strong><br>
-						{{ signalPotentiel.MecanismeAction.Libelle }}
-						({{ signalPotentiel.MecanismeAction.Score }})
+						{# {{ signalPotentiel.MecanismeAction.Libelle }}
+						({{ signalPotentiel.MecanismeAction.Score }}) #}
+						{% if signalPotentiel.MecanismeAction is not null %}
+							{{ signalPotentiel.MecanismeAction.Libelle }} ({{ signalPotentiel.MecanismeAction.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>2) Nombre de cas FR au regard de l’exposition (voir Observé/Attendu lorsqu’il est possible de réaliser)/cas EU (EudraV, PSUSA) :</strong><br>
-						{{ signalPotentiel.Exposition.Libelle }}
-						({{ signalPotentiel.Exposition.Score }})
+						{# {{ signalPotentiel.Exposition.Libelle }}
+						({{ signalPotentiel.Exposition.Score }}) #}
+						{% if signalPotentiel.Exposition is not null %}
+							{{ signalPotentiel.Exposition.Libelle }} ({{ signalPotentiel.Exposition.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>3) Robustesse des cas disponibles : Imputabilité (méthode OMS) :</strong><br>
-						{{ signalPotentiel.Imputabilite.Libelle }}
-						({{ signalPotentiel.Imputabilite.Score }})
+						{# {{ signalPotentiel.Imputabilite.Libelle }}
+						({{ signalPotentiel.Imputabilite.Score }}) #}
+						{% if signalPotentiel.Imputabilite is not null %}
+							{{ signalPotentiel.Imputabilite.Libelle }} ({{ signalPotentiel.Imputabilite.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>4) Littérature (étude non-clinique, étude pharmacoépidémiologie, case reports, Métanalyse, etc.) :</strong><br>
-						{{ signalPotentiel.Litterature.Libelle }}
-						({{ signalPotentiel.Litterature.Score }})
+						{# {{ signalPotentiel.Litterature.Libelle }}
+						({{ signalPotentiel.Litterature.Score }}) #}
+						{% if signalPotentiel.Litterature is not null %}
+							{{ signalPotentiel.Litterature.Libelle }} ({{ signalPotentiel.Litterature.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>5) Essais cliniques :</strong><br>
-						{{ signalPotentiel.EssaisCliniques.Libelle }}
-						({{ signalPotentiel.EssaisCliniques.Score }})
+						{# {{ signalPotentiel.EssaisCliniques.Libelle }}
+						({{ signalPotentiel.EssaisCliniques.Score }}) #}
+						{% if signalPotentiel.EssaisCliniques is not null %}
+							{{ signalPotentiel.EssaisCliniques.Libelle }} ({{ signalPotentiel.EssaisCliniques.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>6) Effet présent dans le RCP d’un autre pays hors EU :</strong><br>
-						{{ signalPotentiel.EffetRCPautrePays.Libelle }}
-						({{ signalPotentiel.EffetRCPautrePays.Score }})
+						{# {{ signalPotentiel.EffetRCPautrePays.Libelle }}
+						({{ signalPotentiel.EffetRCPautrePays.Score }}) #}
+						{% if signalPotentiel.EffetRCPautrePays is not null %}
+							{{ signalPotentiel.EffetRCPautrePays.Libelle }} ({{ signalPotentiel.EffetRCPautrePays.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>7) DAS eRMR :</strong><br>
-						{{ signalPotentiel.DasErmr.Libelle }}
-						({{ signalPotentiel.DasErmr.Score }})
+						{% if signalPotentiel.DasErmr is not null %}
+							{{ signalPotentiel.DasErmr.Libelle }} ({{ signalPotentiel.DasErmr.Score }})
+						{% else %}
+							Non renseigné
+						{% endif %}
 					</p>
 					<p>
 						<strong>Score Total :</strong>
