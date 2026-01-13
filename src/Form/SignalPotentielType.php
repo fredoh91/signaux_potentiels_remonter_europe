@@ -82,6 +82,12 @@ class SignalPotentielType extends AbstractType
                 ],
                 'required' => false,
             ])
+            ->add('NumeroBNPV', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'required' => false,
+            ])
             // ->add('VoieAdmin', TextType::class, [
             //     'attr' => [
             //         'class' => 'form-control',

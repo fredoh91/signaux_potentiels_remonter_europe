@@ -99,6 +99,9 @@ class SignalPotentiel
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Specialite = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $NumeroBNPV = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -436,6 +439,18 @@ class SignalPotentiel
     public function setSpecialite(?string $Specialite): static
     {
         $this->Specialite = $Specialite;
+
+        return $this;
+    }
+
+    public function getNumeroBNPV(): ?string
+    {
+        return $this->NumeroBNPV;
+    }
+
+    public function setNumeroBNPV(?string $NumeroBNPV): static
+    {
+        $this->NumeroBNPV = $NumeroBNPV;
 
         return $this;
     }
