@@ -16,6 +16,7 @@
 							<th scope="col">Dosage</th>
 							<th scope="col">Voie d'administration</th>
 							<th scope="col">Score</th>
+							<th scope="col">Saisi par</th>
 							<th scope="col">Modifier ce signal</th>
 						</tr>
 					</thead>
@@ -37,6 +38,7 @@
 									<td class="text-success">{{ signal.Score }}</td>
 								{% endif %}
 
+								<td>{{ signal.EvalPrenom }} {{ signal.EvalNom }} <br>({{ signal.directionPole.LibelleDmmCourt }} - {{ signal.directionPole.LibellePoleTresCourt }})</td>
 								<td><a href="{{ path('app_edit_signal', { 'idSigPot': signal.id }) }}" class="btn btn-primary">Modifier</a><td>
 							</tr>
 						{% endfor %}

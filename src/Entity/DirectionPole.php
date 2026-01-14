@@ -36,6 +36,9 @@ class DirectionPole
     #[ORM\OneToMany(targetEntity: SignalPotentiel::class, mappedBy: 'directionPole')]
     private Collection $SignalPotentiel;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $LibellePoleTresCourt = null;
+
     public function __construct()
     {
         $this->SignalPotentiel = new ArrayCollection();
@@ -132,6 +135,18 @@ class DirectionPole
                 $signalPotentiel->setDirectionPole(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLibellePoleTresCourt(): ?string
+    {
+        return $this->LibellePoleTresCourt;
+    }
+
+    public function setLibellePoleTresCourt(?string $LibellePoleTresCourt): static
+    {
+        $this->LibellePoleTresCourt = $LibellePoleTresCourt;
 
         return $this;
     }
