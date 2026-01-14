@@ -70,12 +70,13 @@ final class SaisieSignalController extends AbstractController
                         $scoreTotal = null;
                         break;
                     }
+                    $scoreTotal = $scoreTotal + $score;
                 }
 
                 // Si aucun score n'est null, calcule la somme
-                if ($scoreTotal !== null) {
-                    $scoreTotal = array_sum($scores);
-                }
+                // if ($scoreTotal !== null) {
+                //     $scoreTotal = array_sum($scores);
+                // }
             }
 
 
@@ -168,14 +169,15 @@ final class SaisieSignalController extends AbstractController
                         $scoreTotal = null;
                         break;
                     }
+                    $scoreTotal = $scoreTotal + $score;
                 }
 
                 // Si aucun score n'est null, calcule la somme
-                if ($scoreTotal !== null) {
-                    $scoreTotal = array_sum($scores);
-                }
+                // if ($scoreTotal !== null) {
+                //     $scoreTotal = array_sum($scores);
+                // }
             }
-
+            // dd( $scoreTotal );
 
             $entityManager = $doctrine->getManager();
             // $signalPotentiel->setCreatedAt($dateNow);
