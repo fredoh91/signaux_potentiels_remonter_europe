@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Redirection</title>
+
+        {#
+            Filet de sécurité : redirige même si JavaScript est désactivé
+            (méta refresh après le délai configuré, en secondes).
+        #}
+        <meta http-equiv="refresh" content="{{ delaySeconds }}; url={{ redirectionUrl }}">
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body {
+                font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+                background: #f4f6f8;
+                color: #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 20px;
+            }
+            .card {
+                background: #fff;
+                max-width: 620px;
+                width: 100%;
+                border-radius: 8px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+                padding: 40px;
+                text-align: center;
+            }
+            .icon {
+                font-size: 56px;
+                margin-bottom: 16px;
+            }
+            h1 {
+                font-size: 24px;
+                color: #b03a2e;
+                margin-bottom: 16px;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 16px;
+            }
+            a.url {
+                display: inline-block;
+                word-break: break-all;
+                color: #1a73e8;
+                font-weight: 600;
+            }
+            .countdown {
+                font-size: 15px;
+                color: #666;
+                margin-top: 8px;
+            }
+            .btn {
+                display: inline-block;
+                margin-top: 24px;
+                padding: 12px 24px;
+                background: #b03a2e;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 15px;
+            }
+            .btn:hover { background: #932d24; }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="icon">&#9888;&#65039;</div>
+            <h1>Cette application a changé d'adresse</h1>
+            <p>
+                L'application « Signaux potentiels à remonter à l'Europe » a été
+                déplacée. Vous allez être automatiquement redirigé vers la nouvelle
+                adresse :
+            </p>
+            <p>
+                <a class="url" href="{{ redirectionUrl }}">{{ redirectionUrl }}</a>
+            </p>
+            <p class="countdown">
+                Redirection automatique dans <strong id="countdown">{{ delaySeconds }}</strong> secondes...
+            </p>
+            <a class="btn" href="{{ redirectionUrl }}">Accéder immédiatement</a>
+        </div>
+
+        <script>
+            (function () {
+                var seconds = {{ delaySeconds }};
+                var targetUrl = {{ redirectionUrl|json_encode|raw }};
+                var element = document.getElementById('countdown');
+
+                var timer = setInterval(function () {
+                    seconds--;
+                    if (element) {
+                        element.textContent = seconds;
+                    }
+                    if (seconds <= 0) {
+                        clearInterval(timer);
+                        window.location.replace(targetUrl);
+                    }
+                }, 1000);
+            })();
+        </script>
+    </body>
+</html>
